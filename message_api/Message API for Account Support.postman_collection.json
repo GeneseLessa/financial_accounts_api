@@ -1,0 +1,65 @@
+{
+	"info": {
+		"_postman_id": "da782b7e-2ab7-4d11-ac98-c4efe3566566",
+		"name": "Message API for Account Support",
+		"description": "This is just a simple message API for suport hiring test\nin a python senior job.\n\n\nContact Support:\n Email: genese.lessa@xyz.local",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "This view is responsible for send email when operations are executed\nin neighborhood accout API.",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": 1,\n    \"user_name\": \"Genese Lessa\",\n    \"user_email\": \"genese.lessa@gmail.com\",\n    \"account\": 1,\n    \"value\": 35.80,\n    \"operation\": \"credit\",\n    \"message\": \"some personalized message that can come from account api\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8001/sender",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"sender"
+					]
+				},
+				"description": "This view should receive some content by JSON format in\nrequest.data (POST):\n\n» user_id: positive integer field\n» user_name: the name os user\n» user_email: user email (nullable)\n» account: the user account id\n» value: value of operation\n» operation: debit or credit\n» message: a simple message that will sent in email body"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "/"
+		}
+	]
+}

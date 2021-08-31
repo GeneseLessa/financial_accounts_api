@@ -1,0 +1,48 @@
+swagger: '2.0'
+info:
+  title: Message API for Account Support
+  description: |
+    This is just a simple message API for suport hiring test
+    in a python senior job.
+  termsOfService: https://www.google.com/policies/terms/
+  contact:
+    email: genese.lessa@xyz.local
+  license:
+    name: BSD License
+  version: v1
+basePath: /
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  Basic:
+    type: basic
+security:
+  - Basic: []
+paths:
+  /sender:
+    post:
+      operationId: sender_create
+      summary: |-
+        This view is responsible for send email when operations are executed
+        in neighborhood accout API.
+      description: |-
+        This view should receive some content by JSON format in
+        request.data (POST):
+
+        » user_id: positive integer field
+        » user_name: the name os user
+        » user_email: user email (nullable)
+        » account: the user account id
+        » value: value of operation
+        » operation: debit or credit
+        » message: a simple message that will sent in email body
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+        - sender
+    parameters: []
+definitions: {}

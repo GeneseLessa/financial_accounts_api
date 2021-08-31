@@ -1,0 +1,168 @@
+swagger: '2.0'
+info:
+  title: Simple Financial Account API
+  description: |-
+    This is just a simple financial account API for hiring test
+    in a python senior job.
+
+    Some of this endpoints should have to pass a DRF Token
+    (basic token authentication) in header. The format is:
+
+    Authorization: Token XXXXXXXXXXXXXXXXXXXXXXXXX
+
+    Where XXXX is the passed user token created to the model
+  termsOfService: https://www.google.com/policies/terms/
+  contact:
+    email: genese.lessa@xyz.local
+  license:
+    name: BSD License
+  version: v1
+basePath: /
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  Basic:
+    type: basic
+security:
+  - Basic: []
+paths:
+  /api/accounts/:
+    get:
+      operationId: api_accounts_list
+      description: |-
+        Only returns an account if authenticated user has one.
+        Need to pass a DRF Token in Authorization header.
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - api
+    post:
+      operationId: api_accounts_create
+      description: |-
+        User can create an account only if is there no other for that
+        user. This endpoint needs a DRF Token.
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+        - api
+    parameters: []
+  /api/accounts/movement:
+    post:
+      operationId: api_accounts_movement_create
+      description: This CBV just manage the user account movements
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+        - api
+    parameters: []
+  /api/accounts/{id}:
+    get:
+      operationId: api_accounts_read
+      description: |-
+        Only returns an account if authenticated user has one.
+        Need to pass a DRF Token in Authorization header.
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - api
+    post:
+      operationId: api_accounts_create
+      description: |-
+        User can create an account only if is there no other for that
+        user. This endpoint needs a DRF Token.
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+        - api
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /api/users/:
+    get:
+      operationId: api_users_list
+      description: This view update and read one or more users
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - api
+    parameters: []
+  /api/users/create_user:
+    post:
+      operationId: api_users_create_user_create
+      description: This view can create user by the POST HTTP
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+        - api
+    parameters: []
+  /api/users/{id}/:
+    get:
+      operationId: api_users_read
+      description: This view update and read one or more users
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - api
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /authenticate:
+    post:
+      operationId: authenticate_create
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/AuthToken'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/AuthToken'
+      tags:
+        - authenticate
+    parameters: []
+definitions:
+  AuthToken:
+    required:
+      - username
+      - password
+    type: object
+    properties:
+      username:
+        title: "Nome do usu\xE1rio"
+        type: string
+        minLength: 1
+      password:
+        title: Senha
+        type: string
+        minLength: 1
+      token:
+        title: Token
+        type: string
+        readOnly: true
+        minLength: 1
